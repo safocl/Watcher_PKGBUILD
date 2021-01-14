@@ -26,7 +26,7 @@ build() {
     [ ! -d build ] && mkdir build
     cd build
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
     make -j$(cat /proc/cpuinfo|grep processor|wc -l)
 }
 
