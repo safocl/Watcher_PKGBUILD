@@ -5,7 +5,7 @@ pkgrel=1
 arch=('x86_64')
 url='https://github.com/safocl/Watcher'
 license=('GPL3')
-depends=('sdl2_mixer' 'gtkmm3')
+depends=('sdl2_mixer' 'gtkmm4')
 makedepends=('git' 'cmake')
 source=("${_pkgname}::git+https://github.com/safocl/Watcher.git")
 md5sums=('SKIP')
@@ -23,7 +23,7 @@ prepare(){
 build() {
     cd "$srcdir/${_pkgname}"
 
-    [ ! -d build ] && mkdir build
+    rm -rf build && mkdir build
     cd build
 
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
