@@ -1,6 +1,6 @@
 _pkgname='Watcher'
 pkgname="${_pkgname}-git"
-pkgver=r89.5b2f87b
+pkgver=r97.e6650b4
 pkgrel=1
 arch=('x86_64')
 url='https://github.com/safocl/Watcher'
