@@ -1,11 +1,11 @@
 _pkgname='Watcher'
 pkgname="${_pkgname}-git"
-pkgver=r97.e6650b4
+pkgver=r103.3761618
 pkgrel=1
 arch=('x86_64')
 url='https://github.com/safocl/Watcher'
 license=('GPL3')
-depends=('sdl2_mixer' 'gtkmm4')
+depends=('sdl2_mixer' 'gtkmm-4.0')
 makedepends=('git' 'cmake')
 source=("${_pkgname}::git+https://github.com/safocl/Watcher.git")
 md5sums=('SKIP')
@@ -26,8 +26,8 @@ build() {
     rm -rf build && mkdir build
     cd build
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
-    make -j$(cat /proc/cpuinfo|grep processor|wc -l)
+    cmake --install-prefix=/usr -DCMAKE_BUILD_TYPE=Release ..
+    cmake --build . -j$(cat /proc/cpuinfo|grep processor|wc -l)
 }
 
 package(){
