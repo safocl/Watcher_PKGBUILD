@@ -1,7 +1,7 @@
 _pkgname='Watcher'
 pkgname="${_pkgname}-git"
-pkgver=r119.2b439c7
-pkgrel=1
+pkgver=r132.8a1992b
+pkgrel=2
 arch=('x86_64')
 url='https://github.com/safocl/Watcher'
 license=('GPL3')
@@ -16,18 +16,11 @@ pkgver(){
 }
 
 build() {
-    cd "$srcdir/${_pkgname}"
-
-    rm -rf build && mkdir build
-    cd build
-
-    cmake --install-prefix=/usr -DCMAKE_BUILD_TYPE=Release ..
-    cmake --build . -j$(cat /proc/cpuinfo|grep processor|wc -l)
+    cmake -B build -S ${_pkgname} -G Ninja --install-prefix=/usr -DCMAKE_BUILD_TYPE=Release
+    cmake --build build -j$(cat /proc/cpuinfo|grep processor|wc -l)
 }
 
 package(){
-    cd "$srcdir/${_pkgname}/build"
-    make DESTDIR="$pkgdir/" install
-
+    DESTDIR="$pkgdir" cmake --install build
     rm -rf $pkgdir/usr/{lib,include}
 }
